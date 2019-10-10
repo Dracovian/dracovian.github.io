@@ -1,0 +1,490 @@
+<!--
+    So far you're aware that I made some mistakes with the names in this project.
+     You'll quickly figure out which ones I mistook by looking at the input names.
+     I opted to use the naming convention I found within the SWF file through FFdec.
+-->
+<html>
+    <head>
+        <title>The Towers - Save Generator</title>
+        <link rel="stylesheet" href="towers_save_generator.css" />
+
+        <script type="application/javascript" src="form_handler.js"></script>
+        <script type="application/javascript" src="towers_save_generator.js"></script>
+
+        <!-- Yes I know, inline scripts in 2019 -->
+        <script type="application/javascript">
+            OTSG = new Overcomplicated_Towers_Save_Generator();
+        </script>
+    </head>
+    <body>
+        <h1 id="title">The Tower Extended v036_14 - Save Generator</h1>
+        <table id="formTable" cellspacing="10" cellpadding="5">
+            <tr><td><h3>Hero Information: </h3></td></tr>
+            <tr>
+                <td>
+                    <label for="hero_lvl">Hero Level: </label>
+                    <input class="formInput" type="number" name="hero_lvl" onchange="OTSG.modify('hero_lvl')" /><br />
+
+                    <label for="hero_exp">Hero Experience: </label>
+                    <input class="formInput" type="number" name="hero_exp" onchange="OTSG.modify('hero_exp')" /><br />
+
+                    <label for="hero_nxt_lvl">Hero Experience to next Level: </label>
+                    <input class="formInput" type="number" name="hero_nxt_lvl" onchange="OTSG.modify('hero_nxt_lvl')" /><br />
+
+                    <label for="hero_cmb_lvl">Combo Level: </label>
+                    <input class="formInput" type="number" name="hero_cmb_lvl" onchange="OTSG.modify('hero_cmb_lvl')" /><br />
+
+                    <label for="heroSoulStr">Souls: </label>
+                    <input class="formInput" type="number" name="heroSoulStr" onchange="OTSG.modify('heroSoulStr')" /><br />
+
+                    <label for="heroMoney">Money: </label>
+                    <input class="formInput" type="number" name="heroMoney" onchange="OTSG.modify('heroMoney')" /><br />
+
+                    <label for="hard_level">Difficulty Level: </label>
+                    <input class="formInput" type="number" name="hard_level" onchange="OTSG.modify('hard_level')" /><br />
+
+                    <label for="loveOfFox">Love Of Fox: </label>
+                    <input class="formInput" type="number" name="loveOfFox" onchange="OTSG.modify('loveOfFox')" /><br />
+
+                    <label for="foxDiedTimes">Times Fox Died: </label>
+                    <input class="formInput" type="number" name="foxDiedTimes" onchange="OTSG.modify('foxDiedTimes')" /><br />
+                </td><br />
+            </tr>
+            <tr><td><h3>Hero Stats: </h3></td></tr>
+            <tr>
+                <td>
+                    <label for="stat_points">Stat Points: </label>
+                    <input class="formInput" type="number" name="stat_points" onchange="OTSG.modify('stat_points')" /><br />
+
+                    <label for="hero_mhp">Max HP: </label>
+                    <input class="formInput" type="number" name="hero_mhp" onchange="OTSG.modify('hero_mhp')" /><br />
+
+                    <label for="hero_hp">HP: </label>
+                    <input class="formInput" type="number" name="hero_hp" onchange="OTSG.modify('hero_hp')" /><br />
+
+                    <label for="hero_mmp">Max MP: </label>
+                    <input class="formInput" type="number" name="hero_mmp" onchange="OTSG.modify('hero_mmp')" /><br />
+
+                    <label for="hero_mp">MP: </label>
+                    <input class="formInput" type="number" name="hero_mp" onchange="OTSG.modify('hero_mp')" /><br />
+
+                    <label for="hero_speed">Stat Speed: </label>
+                    <input class="formInput" type="number" name="hero_speed" onchange="OTSG.modify('hero_speed')" /><br />
+
+                    <label for="hero_dmg">Stat Damage: </label>
+                    <input class="formInput" type="number" name="hero_dmg" onchange="OTSG.modify('hero_dmg')" /><br />
+
+                    <label for="hero_def">Stat Defense: </label>
+                    <input class="formInput" type="number" name="hero_def" onchange="OTSG.modify('hero_def')" /><br />
+
+                    <label for="hero_perverting">Perverting: </label>
+                    <input class="formInput" type="number" name="hero_perverting" onchange="OTSG.modify('hero_perverting')" /><br />
+
+                    <label for="totalSouls">Souls: </label>
+                    <input class="formInput" type="number" name="totalSouls" onchange="OTSG.modify('totalSouls')" /><br />
+                </td><br />
+            </tr>
+            <tr><td><h3>Hero Collectors: </h3></td></tr>
+            <tr>
+                <td>
+                    <label for="hero_speed_collector">Speed Collector: </label>
+                    <input class="formInput" type="number" name="hero_speed_collector" onchange="OTSG.modify('hero_speed_collector')" /><br />
+
+                    <label for="hero_mhp_collector">Max HP Collector: </label>
+                    <input class="formInput" type="number" name="hero_mhp_collector" onchange="OTSG.modify('hero_mhp_collector')" /><br />
+
+                    <label for="hero_def_collector">Defense Collector: </label>
+                    <input class="formInput" type="number" name="hero_def_collector" onchange="OTSG.modify('hero_def_collector')" /><br />
+
+                    <label for="hero_cmb_lvl_collector">Combo Level Collector: </label>
+                    <input class="formInput" type="number" name="hero_cmb_lvl_collector" onchange="OTSG.modify('hero_cmb_lvl_collector')" /><br />
+
+                    <label for="hero_dmg_collector">Damage Collector: </label>
+                    <input class="formInput" type="number" name="hero_dmg_collector" onchange="OTSG.modify('hero_dmg_collector')" /><br />
+                </td><br />
+            </tr>
+            <tr><td><h3>Tower Levels: </h3></td></tr>
+            <tr>
+                <td>
+                    <label for="tower_level['air']">Air Tower: </label>
+                    <input class="formInput" type="number" name="tower_level['air']" onchange="OTSG.modify('tower_level', 'air')" /><br />
+
+                    <label for="tower_level['earth']">Earth Tower: </label>
+                    <input class="formInput" type="number" name="tower_level['earth']" onchange="OTSG.modify('tower_level', 'earth')" /><br />
+
+                    <label for="tower_level['water']">Water Tower: </label>
+                    <input class="formInput" type="number" name="tower_level['water']" onchange="OTSG.modify('tower_level', 'water')" /><br />
+
+                    <label for="tower_level['fire']">Fire Tower: </label>
+                    <input class="formInput" type="number" name="tower_level['fire']" onchange="OTSG.modify('tower_level', 'fire')" /><br />
+
+                    <label for="tower_level['forest']">Forest Tower: </label>
+                    <input class="formInput" type="number" name="tower_level['forest']" onchange="OTSG.modify('tower_level', 'forest')" /><br />
+                </td><br />
+            </tr>
+            <tr><td><h3>Hero Skills: </h3></td></tr>
+            <tr>
+                <td>
+                    <label for="heroSkillDefense">Defense Skill: </label>
+                    <input class="formInput" type="number" name="heroSkillDefense" onchange="OTSG.modify('heroSkillDefense')" /><br />
+
+                    <label for="heroSkillHeal">Heal Skill: </label>
+                    <input class="formInput" type="number" name="heroSkillHeal" onchange="OTSG.modify('heroSkillHeal')" /><br />
+
+                    <label for="heroSkillCleave">Cleave Skill: </label>
+                    <input class="formInput" type="number" name="heroSkillCleave" onchange="OTSG.modify('heroSkillCleave')" /><br />
+
+                    <label for="heroSkillTarget">Target Skill: </label>
+                    <input class="formInput" type="number" name="heroSkillTarget" onchange="OTSG.modify('heroSkillTarget')" /><br />
+
+                    <label for="heroSkillCapture">Target Capture: </label>
+                    <input class="formInput" type="number" name="heroSkillCapture" onchange="OTSG.modify('heroSkillCapture')" /><br />
+                </td><br />
+            </tr>
+            <tr><td><h3>Hero Inventory: </h3></td></tr>
+            <tr>
+                <td>
+                    <label for="heroHpBottles">HP Bottles: </label>
+                    <input class="formInput" type="number" name="heroHpBottles" onchange="OTSG.modify('heroHpBottles')" /><br />
+
+                    <label for="heroManaBottles">MP Bottles: </label>
+                    <input class="formInput" type="number" name="heroManaBottles" onchange="OTSG.modify('heroManaBottles')" /><br />
+
+                    <label for="heroCureBottles">Cure Bottles: </label>
+                    <input class="formInput" type="number" name="heroCureBottles" onchange="OTSG.modify('heroCureBottles')" /><br />
+
+                    <label for="heroPervertBottles">Pervert Bottles: </label>
+                    <input class="formInput" type="number" name="heroPervertBottles" onchange="OTSG.modify('heroPervertBottles')" /><br />
+                </td><br />
+            </tr>
+            <tr><td><h3>Boss Souls: </h3></td></tr>
+            <tr>
+                <td>
+                    <label for="bossSouls['chimera']">Chimera Souls: </label>
+                    <input class="formInput" type="number" name="bossSouls['chimera']" onchange="OTSG.modify('bossSouls', 'chimera')" /><br />
+
+                    <label for="bossSouls['foxTower']">Fox Tower Souls: </label>
+                    <input class="formInput" type="number" name="bossSouls['foxTower']" onchange="OTSG.modify('bossSouls', 'foxTower')" /><br />
+
+                    <label for="bossSouls['foxHome']">Fox Home Souls: </label>
+                    <input class="formInput" type="number" name="bossSouls['foxHome']" onchange="OTSG.modify('bossSouls', 'foxHome')" /><br />
+
+                    <label for="bossSouls['naga']">Naga Souls: </label>
+                    <input class="formInput" type="number" name="bossSouls['naga']" onchange="OTSG.modify('bossSouls', 'naga')" /><br />
+
+                    <label for="bossSouls['cyclops']">Cyclops Souls: </label>
+                    <input class="formInput" type="number" name="bossSouls['cyclops']" onchange="OTSG.modify('bossSouls', 'cyclops')" /><br />
+
+                    <label for="bossSouls['empress']">Empress Souls: </label>
+                    <input class="formInput" type="number" name="bossSouls['empress']" onchange="OTSG.modify('bossSouls', 'empress')" /><br />
+                </td><br />
+            </tr>
+            <tr><td><h3>Monster Souls: </h3></td></tr>
+            <tr>
+                <td>
+                    <label for="monsterSouls['slime']">Slime Souls: </label>
+                    <input class="formInput" type="number" name="monsterSouls['slime']" onchange="OTSG.modify('monsterSouls', 'slime')" /><br />
+
+                    <label for="monsterSouls['fairy']">Fairy Souls: </label>
+                    <input class="formInput" type="number" name="monsterSouls['fairy']" onchange="OTSG.modify('monsterSouls', 'fairy')" /><br />
+
+                    <label for="monsterSouls['alraune']">Alraune Souls: </label>
+                    <input class="formInput" type="number" name="monsterSouls['alraune']" onchange="OTSG.modify('monsterSouls', 'alraune')" /><br />
+
+                    <label for="monsterSouls['holstaurus']">Holstaurus Souls: </label>
+                    <input class="formInput" type="number" name="monsterSouls['holstaurus']" onchange="OTSG.modify('monsterSouls', 'holstaurus')" /><br />
+
+                    <label for="monsterSouls['cat']">Cat Souls: </label>
+                    <input class="formInput" type="number" name="monsterSouls['cat']" onchange="OTSG.modify('monsterSouls', 'cat')" /><br />
+
+                    <label for="monsterSouls['bunny']">Bunny Souls: </label>
+                    <input class="formInput" type="number" name="monsterSouls['bunny']" onchange="OTSG.modify('monsterSouls', 'bunny')" /><br />
+
+                    <label for="monsterSouls['lizard']">Lizard Souls: </label>
+                    <input class="formInput" type="number" name="monsterSouls['lizard']" onchange="OTSG.modify('monsterSouls', 'lizard')" /><br />
+
+                    <label for="monsterSouls['kappa']">Kappa Souls: </label>
+                    <input class="formInput" type="number" name="monsterSouls['kappa']" onchange="OTSG.modify('monsterSouls', 'kappa')" /><br />
+
+                    <label for="monsterSouls['scorpio']">Scorpio Souls: </label>
+                    <input class="formInput" type="number" name="monsterSouls['scorpio']" onchange="OTSG.modify('monsterSouls', 'scorpio')" /><br />
+
+                    <label for="monsterSouls['centaurus']">Centaurus Souls: </label>
+                    <input class="formInput" type="number" name="monsterSouls['centaurus']" onchange="OTSG.modify('monsterSouls', 'centaurus')" /><br />
+
+                    <label for="monsterSouls['harpy']">Harpy Souls: </label>
+                    <input class="formInput" type="number" name="monsterSouls['harpy']" onchange="OTSG.modify('monsterSouls', 'harpy')" /><br />
+
+                    <label for="monsterSouls['satyr']">Satyr Souls: </label>
+                    <input class="formInput" type="number" name="monsterSouls['satyr']" onchange="OTSG.modify('monsterSouls', 'satyr')" /><br />
+
+                    <label for="monsterSouls['vampire']">Vampire Souls: </label>
+                    <input class="formInput" type="number" name="monsterSouls['vampire']" onchange="OTSG.modify('monsterSouls', 'vampire')" /><br />
+
+                    <label for="monsterSouls['succubus']">Succubus Souls: </label>
+                    <input class="formInput" type="number" name="monsterSouls['succubus']" onchange="OTSG.modify('monsterSouls', 'succubus')" /><br />
+
+                    <label for="monsterSouls['witch']">Witch Souls: </label>
+                    <input class="formInput" type="number" name="monsterSouls['witch']" onchange="OTSG.modify('monsterSouls', 'witch')" /><br />
+                </td><br />
+            </tr>
+            <tr><td><h3>Achievement Flags: </h3></td></tr>
+            <tr>
+                <td>
+                    <label for="descOfAch['start']">Achievement Start: </label>
+                    <input class="formInput" type="checkbox" name="descOfAch['start']" onchange="OTSG.modify('descOfAch', 'start')" /><br />
+
+                    <label for="descOfAch['tenHoles']">Achievement Ten Holes: </label>
+                    <input class="formInput" type="checkbox" name="descOfAch['tenHoles']" onchange="OTSG.modify('descOfAch', 'tenHoles')" /><br />
+
+                    <label for="descOfAch['comboMaster']">Achievement Combo Master: </label>
+                    <input class="formInput" type="checkbox" name="descOfAch['comboMaster']" onchange="OTSG.modify('descOfAch', 'comboMaster')" /><br />
+
+                    <label for="descOfAch['fame']">Achievement Fame: </label>
+                    <input class="formInput" type="checkbox" name="descOfAch['fame']" onchange="OTSG.modify('descOfAch', 'fame')" /><br />
+
+                    <label for="descOfAch['soPower']">Achievement Soul Power: </label>
+                    <input class="formInput" type="checkbox" name="descOfAch['soPower']" onchange="OTSG.modify('descOfAch', 'soPower')" /><br />
+
+                    <label for="descOfAch['souls']">Achievement Souls: </label>
+                    <input class="formInput" type="checkbox" name="descOfAch['souls']" onchange="OTSG.modify('descOfAch', 'souls')" /><br />
+
+                    <label for="descOfAch['endIsNear']">Achievement End Is Near: </label>
+                    <input class="formInput" type="checkbox" name="descOfAch['endIsNear']" onchange="OTSG.modify('descOfAch', 'endIsNear')" /><br />
+
+                    <label for="descOfAch['allOpened']">Achievement All Opened: </label>
+                    <input class="formInput" type="checkbox" name="descOfAch['allOpened']" onchange="OTSG.modify('descOfAch', 'allOpened')" /><br />
+
+                    <label for="descOfAch['end']">Achievement End: </label>
+                    <input class="formInput" type="checkbox" name="descOfAch['end']" onchange="OTSG.modify('descOfAch', 'end')" /><br />
+
+                    <label for="descOfAch['nowYouKnow']">Achievement Now You Know: </label>
+                    <input class="formInput" type="checkbox" name="descOfAch['nowYouKnow']" onchange="OTSG.modify('descOfAch', 'nowYouKnow')" /><br />
+
+                    <label for="descOfAch['divineHero']">Achievement Divine Hero: </label>
+                    <input class="formInput" type="checkbox" name="descOfAch['divineHero']" onchange="OTSG.modify('descOfAch', 'divineHero')" /><br />
+
+                    <label for="descOfAch['houseSitter']">Achievement House Sitter: </label>
+                    <input class="formInput" type="checkbox" name="descOfAch['houseSitter']" onchange="OTSG.modify('descOfAch', 'houseSitter')" /><br />
+
+                    <label for="descOfAch['youAreMurderer']">Achievement You Are Murderer: </label>
+                    <input class="formInput" type="checkbox" name="descOfAch['youAreMurderer']" onchange="OTSG.modify('descOfAch', 'youAreMurderer')" /><br />
+
+                    <label for="descOfAch['tricked']">Achievement Tricked: </label>
+                    <input class="formInput" type="checkbox" name="descOfAch['tricked']" onchange="OTSG.modify('descOfAch', 'tricked')" /><br />
+
+                    <label for="descOfAch['divineHeroTrue']">Achievement Divine Hero True: </label>
+                    <input class="formInput" type="checkbox" name="descOfAch['divineHeroTrue']" onchange="OTSG.modify('descOfAch', 'divineHeroTrue')" /><br />
+
+                    <label for="descOfAch['youKnowCode']">Achievement You Know Code: </label>
+                    <input class="formInput" type="checkbox" name="descOfAch['youKnowCode']" onchange="OTSG.modify('descOfAch', 'youKnowCode')" /><br />
+
+                    <label for="descOfAch['endWhat']">Achievement End What: </label>
+                    <input class="formInput" type="checkbox" name="descOfAch['endWhat']" onchange="OTSG.modify('descOfAch', 'endWhat')" /><br />
+
+                    <label for="descOfAch['nagaSpeak']">Achievement Naga Speak: </label>
+                    <input class="formInput" type="checkbox" name="descOfAch['nagaSpeak']" onchange="OTSG.modify('descOfAch', 'nagaSpeak')" /><br />
+
+                    <label for="descOfAch['wasTricked']">Achievement Was Tricked: </label>
+                    <input class="formInput" type="checkbox" name="descOfAch['wasTricked']" onchange="OTSG.modify('descOfAch', 'wasTricked')" /><br />
+                </td><br />
+            </tr>
+            <tr><td><h3>Game Flags: </h3></td></tr>
+            <tr>
+                <td>
+                    <label for="brokenBuildingEnter">Broken Building Entered: </label>
+                    <input class="formInput" type="checkbox" name="brokenBuildingEnter" onchange="OTSG.modify('brokenBuildingEnter')" /><br />
+
+                    <label for="aboutShop">About Shop: </label>
+                    <input class="formInput" type="checkbox" name="aboutShop" onchange="OTSG.modify('aboutShop')" /><br />
+
+                    <label for="aboutHouse">About House: </label>
+                    <input class="formInput" type="checkbox" name="aboutHouse" onchange="OTSG.modify('aboutHouse')" /><br />
+
+                    <label for="aboutPlace">About Place: </label>
+                    <input class="formInput" type="checkbox" name="aboutPlace" onchange="OTSG.modify('aboutPlace')" /><br />
+
+                    <label for="aboutPeople">About People: </label>
+                    <input class="formInput" type="checkbox" name="aboutPeople" onchange="OTSG.modify('aboutPeople')" /><br />
+
+                    <label for="aboutHelp">About Help: </label>
+                    <input class="formInput" type="checkbox" name="aboutHelp" onchange="OTSG.modify('aboutHelp')" /><br />
+
+                    <label for="aboutSpherePiece">About Sphere Piece: </label>
+                    <input class="formInput" type="checkbox" name="aboutSpherePiece" onchange="OTSG.modify('aboutSpherePiece')" /><br />
+
+                    <label for="aboutTownHelp">About Town Help: </label>
+                    <input class="formInput" type="checkbox" name="aboutTownHelp" onchange="OTSG.modify('aboutTownHelp')" /><br />
+
+                    <label for="aboutChimeraVictory">About Chimera Victory: </label>
+                    <input class="formInput" type="checkbox" name="aboutChimeraVictory" onchange="OTSG.modify('aboutChimeraVictory')" /><br />
+
+                    <label for="aboutPricesRising">About Prices Rising: </label>
+                    <input class="formInput" type="checkbox" name="aboutPricesRising" onchange="OTSG.modify('aboutPricesRising')" /><br />
+
+                    <label for="aboutFoxGirl">About Fox Girl: </label>
+                    <input class="formInput" type="checkbox" name="aboutFoxGirl" onchange="OTSG.modify('aboutFoxGirl')" /><br />
+
+                    <label for="aboutBook">About Book: </label>
+                    <input class="formInput" type="checkbox" name="aboutBook" onchange="OTSG.modify('aboutBook')" /><br />
+
+                    <label for="heroHaveSphere">Hero Have Sphere: </label>
+                    <input class="formInput" type="checkbox" name="heroHaveSphere" onchange="OTSG.modify('heroHaveSphere')" /><br />
+
+                    <label for="heroWasInTower">Hero Was In Tower: </label>
+                    <input class="formInput" type="checkbox" name="heroWasInTower" onchange="OTSG.modify('heroWasInTower')" /><br />
+
+                    <label for="heroTurnBack">Hero Turn Back: </label>
+                    <input class="formInput" type="checkbox" name="heroTurnBack" onchange="OTSG.modify('heroTurnBack')" /><br />
+
+                    <label for="heroUseFountain">Hero Use Fountain: </label>
+                    <input class="formInput" type="checkbox" name="heroUseFountain" onchange="OTSG.modify('heroUseFountain')" /><br />
+
+                    <label for="heroHaveOnePart">Hero Have One Part: </label>
+                    <input class="formInput" type="checkbox" name="heroHaveOnePart" onchange="OTSG.modify('heroHaveOnePart')" /><br />
+
+                    <label for="heroHaveTwoPart">Hero Have Two Part: </label>
+                    <input class="formInput" type="checkbox" name="heroHaveTwoPart" onchange="OTSG.modify('heroHaveTwoPart')" /><br />
+
+                    <label for="heroHaveGarden">Hero Have Garden Tower Sphere: </label>
+                    <input class="formInput" type="checkbox" name="heroHaveGarden" onchange="OTSG.modify('heroHaveGarden')" /><br />
+
+                    <label for="heroHaveAir">Hero Have Air Tower Sphere: </label>
+                    <input class="formInput" type="checkbox" name="heroHaveAir" onchange="OTSG.modify('heroHaveAir')" /><br />
+
+                    <label for="heroHaveFire">Hero Have Fire Tower Sphere: </label>
+                    <input class="formInput" type="checkbox" name="heroHaveFire" onchange="OTSG.modify('heroHaveFire')" /><br />
+
+                    <label for="heroHaveWater">Hero Have Water Tower Sphere: </label>
+                    <input class="formInput" type="checkbox" name="heroHaveWater" onchange="OTSG.modify('heroHaveWater')" /><br />
+
+                    <label for="heroHaveEarth">Hero Have Earth Tower Sphere: </label>
+                    <input class="formInput" type="checkbox" name="heroHaveEarth" onchange="OTSG.modify('heroHaveEarth')" /><br />
+
+                    <label for="heroWinGarden">Hero Completed Garden Tower: </label>
+                    <input class="formInput" type="checkbox" name="heroWinGarden" onchange="OTSG.modify('heroWinGarden')" /><br />
+
+                    <label for="heroWinAir">Hero Completed Air Tower: </label>
+                    <input class="formInput" type="checkbox" name="heroWinAir" onchange="OTSG.modify('heroWinAir')" /><br />
+
+                    <label for="heroWinFire">Hero Completed Fire Tower: </label>
+                    <input class="formInput" type="checkbox" name="heroWinFire" onchange="OTSG.modify('heroWinFire')" /><br />
+
+                    <label for="heroWinWater">Hero Completed Water Tower: </label>
+                    <input class="formInput" type="checkbox" name="heroWinWater" onchange="OTSG.modify('heroWinWater')" /><br />
+
+                    <label for="heroWinEarth">Hero Completed Earth Tower: </label>
+                    <input class="formInput" type="checkbox" name="heroWinEarth" onchange="OTSG.modify('heroWinEarth')" /><br />
+
+                    <label for="heroWasInTown">Hero Was In Town: </label>
+                    <input class="formInput" type="checkbox" name="heroWasInTown" onchange="OTSG.modify('heroWasInTown')" /><br />
+
+                    <label for="foxAlive">Fox Is Alive: </label>
+                    <input class="formInput" type="checkbox" name="foxAlive" onchange="OTSG.modify('foxAlive')" /><br />
+
+                    <label for="foxInHome">Fox In Home: </label>
+                    <input class="formInput" type="checkbox" name="foxInHome" onchange="OTSG.modify('foxInHome')" /><br />
+
+                    <label for="foxTalkAboutStay">Fox Talked About Stay: </label>
+                    <input class="formInput" type="checkbox" name="foxTalkAboutStay" onchange="OTSG.modify('foxTalkAboutStay')" /><br />
+
+                    <label for="foxClothed">Fox Clothed: </label>
+                    <input class="formInput" type="checkbox" name="foxClothed" onchange="OTSG.modify('foxClothed')" /><br />
+
+                    <label for="aboutWhere">About Where: </label>
+                    <input class="formInput" type="checkbox" name="aboutWhere" onchange="OTSG.modify('aboutWhere')" /><br />
+
+                    <label for="aboutTowers">About Towers: </label>
+                    <input class="formInput" type="checkbox" name="aboutTowers" onchange="OTSG.modify('aboutTowers')" /><br />
+
+                    <label for="aboutAllGirls">About All Girls: </label>
+                    <input class="formInput" type="checkbox" name="aboutAllGirls" onchange="OTSG.modify('aboutAllGirls')" /><br />
+
+                    <label for="aboutMinions">About Minions: </label>
+                    <input class="formInput" type="checkbox" name="aboutMinions" onchange="OTSG.modify('aboutMinions')" /><br />
+
+                    <label for="aboutSpheres">About Spheres: </label>
+                    <input class="formInput" type="checkbox" name="aboutSpheres" onchange="OTSG.modify('aboutSpheres')" /><br />
+
+                    <label for="aboutEmpress">About Empress: </label>
+                    <input class="formInput" type="checkbox" name="aboutEmpress" onchange="OTSG.modify('aboutEmpress')" /><br />
+
+                    <label for="aboutClothes">About Clothes: </label>
+                    <input class="formInput" type="checkbox" name="aboutClothes" onchange="OTSG.modify('aboutClothes')" /><br />
+
+                    <label for="firstSex">Had First Sex: </label>
+                    <input class="formInput" type="checkbox" name="firstSex" onchange="OTSG.modify('firstSex')" /><br />
+
+                    <label for="foxHaveClothes">Fox Has Clothes: </label>
+                    <input class="formInput" type="checkbox" name="foxHaveClothes" onchange="OTSG.modify('foxHaveClothes')" /><br />
+
+                    <label for="showTips">Show Tips: </label>
+                    <input class="formInput" type="checkbox" name="showTips" onchange="OTSG.modify('showTips')" /><br />
+
+                    <label for="tip['mapT']">Map Tips: </label>
+                    <input class="formInput" type="checkbox" name="tip['mapT']" onchange="OTSG.modify('tip', 'mapT')" /><br />
+
+                    <label for="tip['town']">Town Tips: </label>
+                    <input class="formInput" type="checkbox" name="tip['town']" onchange="OTSG.modify('tip', 'town')" /><br />
+
+                    <label for="tip['tavern']">Tavern Tips: </label>
+                    <input class="formInput" type="checkbox" name="tip['tavern']" onchange="OTSG.modify('tip', 'tavern')" /><br />
+
+                    <label for="tip['rentHome']">Home Tips: </label>
+                    <input class="formInput" type="checkbox" name="tip['rentHome']" onchange="OTSG.modify('tip', 'rentHome')" /><br />
+
+                    <label for="tip['aboutTowers']">Tower Tips: </label>
+                    <input class="formInput" type="checkbox" name="tip['aboutTowers']" onchange="OTSG.modify('tip', 'aboutTowers')" /><br />
+
+                    <label for="tip['battle']">Battle Tips: </label>
+                    <input class="formInput" type="checkbox" name="tip['battle']" onchange="OTSG.modify('tip', 'battle')" /><br />
+
+                    <label for="tip['chimeraBattle']">Chimera Battle Tips: </label>
+                    <input class="formInput" type="checkbox" name="tip['chimeraBattle']" onchange="OTSG.modify('tip', 'chimeraBattle')" /><br />
+
+                    <label for="tip['magicScroll']">Magic Scroll Tips: </label>
+                    <input class="formInput" type="checkbox" name="tip['magicScroll']" onchange="OTSG.modify('tip', 'magicScroll')" /><br />
+
+                    <label for="tip['galleryT']">Gallery Tips: </label>
+                    <input class="formInput" type="checkbox" name="tip['galleryT']" onchange="OTSG.modify('tip', 'galleryT')" /><br />
+
+                    <label for="octaShowed">Octagon Showed: </label>
+                    <input class="formInput" type="checkbox" name="octaShowed" onchange="OTSG.modify('octaShowed')" /><br />
+
+                    <label for="cyclopsNo">Cyclops Notified: </label>
+                    <input class="formInput" type="checkbox" name="cyclopsNo" onchange="OTSG.modify('cyclopsNo')" /><br />
+
+                    <label for="OldCharA">Old Char A: </label>
+                    <input class="formInput" type="checkbox" name="OldCharA" onchange="OTSG.modify('OldCharA')" /><br />
+
+                    <label for="bananaCheat">Banana Cheat: </label>
+                    <input class="formInput" type="checkbox" name="bananaCheat" onchange="OTSG.modify('bananaCheat')" /><br />
+
+                    <label for="coconutCheat">Coconut Cheat: </label>
+                    <input class="formInput" type="checkbox" name="coconutCheat" onchange="OTSG.modify('coconutCheat')" /><br />
+
+                    <label for="heroHaveAmulet">Hero Have Amulet: </label>
+                    <input class="formInput" type="checkbox" name="heroHaveAmulet" onchange="OTSG.modify('heroHaveAmulet')" /><br />
+
+                    <label for="aboutAmulet">About Amulet: </label>
+                    <input class="formInput" type="checkbox" name="aboutAmulet" onchange="OTSG.modify('aboutAmulet')" /><br />
+
+                    <label for="walkthrough">Walkthrough: </label>
+                    <input class="formInput" type="checkbox" name="walkthrough" onchange="OTSG.modify('walkthrough')" /><br />
+
+                    <label for="foxLoveOverdosed">Fox Love Overdosed: </label>
+                    <input class="formInput" type="checkbox" name="foxLoveOverdosed" onchange="OTSG.modify('foxLoveOverdosed')" /><br />
+                </td>
+            </tr>
+            <tr><td><input type="button" onclick="OTSG.createSaveText()" value="Generate Code" /></td></tr>
+        </table>
+
+        <textarea id="codeRegion" disabled></textarea>
+
+        <!-- Yes I know, inline script tags in 2019. -->
+        <script type="application/javascript">
+            let formHandler = new FormHandler();
+            formHandler.fill_form(OTSG);
+        </script>
+    </body>
+</html>
