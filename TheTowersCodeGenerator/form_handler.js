@@ -164,3 +164,16 @@ class FormHandler {
         formInputs[137].checked = OTSG.foxLoveOverdosed;
     }
 }
+
+// Allow for copying textarea content to clipboard for those on mobile.
+function mobile_copy(textarea_id) {
+    let box = document.getElementById(textarea_id);
+
+    if (box.value == "")
+        document.getElementById('generate').click();
+        
+    box.select();
+    document.execCommand('copy');
+
+    alert('Successfully copied generated code to clipboard.');
+}

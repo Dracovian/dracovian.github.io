@@ -14,6 +14,14 @@ body {
     color: rgb(192, 192, 192);
 }
 
+#clipboard {
+    margin-right: -245px !important;
+}
+
+#generate {
+    margin-right: 100px !important;
+}
+
 #title {
     display: block;
     margin: 0 auto;
@@ -33,6 +41,7 @@ body {
 
     resize: none;
     border: none;
+    outline: none;
 }
 
 #formTable {

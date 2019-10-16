@@ -476,10 +476,13 @@
                     <input class="formInput" type="checkbox" name="foxLoveOverdosed" onchange="OTSG.modify('foxLoveOverdosed')" /><br />
                 </td>
             </tr>
-            <tr><td><input type="button" onclick="OTSG.createSaveText()" value="Generate Code" /></td></tr>
+            <tr>
+                <td><input type="button" id="generate"  onclick="OTSG.createSaveText()" value="Generate Code" /></td>
+                <td><input type="button" id="clipboard" onclick="mobile_copy('codeRegion')" value="Copy to Clipboard" /></td>
+            </tr>
         </table>
 
-        <textarea id="codeRegion" disabled></textarea>
+        <textarea id="codeRegion"></textarea>
 
         <!-- Yes I know, inline script tags in 2019. -->
         <script type="application/javascript">
