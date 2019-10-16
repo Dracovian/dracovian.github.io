@@ -13,7 +13,8 @@
 
         <!-- Yes I know, inline scripts in 2019 -->
         <script type="application/javascript">
-            OTSG = new Overcomplicated_Towers_Save_Generator();
+            let OTSG = new Overcomplicated_Towers_Save_Generator(),
+                formHandler = new FormHandler();
         </script>
     </head>
     <body>
@@ -475,6 +476,11 @@
                     <label for="foxLoveOverdosed">Fox Love Overdosed: </label>
                     <input class="formInput" type="checkbox" name="foxLoveOverdosed" onchange="OTSG.modify('foxLoveOverdosed')" /><br />
                 </td>
+
+                <!-- Yes I know, inline script tags in 2019. -->
+                <script type="application/javascript">
+                    formHandler.fill_form(OTSG);
+                </script>
             </tr>
             <tr>
                 <td><input type="button" id="generate"  onclick="OTSG.createSaveText()" value="Generate Code" /></td>
@@ -483,11 +489,5 @@
         </table>
 
         <textarea id="codeRegion"></textarea>
-
-        <!-- Yes I know, inline script tags in 2019. -->
-        <script type="application/javascript">
-            let formHandler = new FormHandler();
-            formHandler.fill_form(OTSG);
-        </script>
     </body>
 </html>
