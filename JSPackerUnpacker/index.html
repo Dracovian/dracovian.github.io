@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Javascript Packer and Unpacker</title>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" type="text/css" href="./css/site.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css" />
+
+        <!-- External Javascript Files -->
+        <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautifier.min.js"></script>
+        <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+        <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/javascript.min.js"></script>
+
+        <!-- Internal Javascript Files -->
+        <script type="application/javascript" src="./js/unpacker.js"></script>
+        <script type="application/javascript" src="./js/base.js"></script>
+        <script type="application/javascript" src="./js/packer.js"></script>
+        <script type="application/javascript" src="./js/words.js"></script>
+
+        <!-- Inline Javascript -->
+        <script type="application/javascript">
+
+            // Create a function to initialize highlightjs.
+            let initHighlighting = () => {
+                $('pre code').toArray().forEach((block, id) => {
+                    hljs.highlightBlock(block);
+                });
+            }
+
+            // Create a function to pack our code.
+            let packCode = () => {
+                let packer = new Packer,
+                    packed = packer.pack($('#code-input')[0].innerText, true, true);
+
+                $("#code-output")[0].innerText = packed;
+            }
+
+            // Create a function to unpack our code.
+            let unpackCode = () => {
+                let unpacked = unpack($('#code-output')[0].innerText);
+                $('#code-input')[0].innerText = beautifier.js(unpacked);
+            }
+        </script>
+    </head>
+    <body>
+        <section id="center" onclick="initHighlighting()">
+            <section id="content">
+                <label for="packed">Unpacked Code</label>
+                <pre><code class="javascript" contenteditable="true" name="packed" id="code-input"></code></pre>
+
+                <button onclick="unpackCode()">Unpack Code</button>
+                <button onclick="packCode()">Pack Code</button>
+
+                <pre><code class="javascript" contenteditable="true" name="unpacked" id="code-output"></code></pre>
+                <label for="unpacked">Packed Code</label>
+            </section>
+        </section>
+
+        <!-- More Inline Javascript -->
+        <script type="application/javascript">
+            
+        </script>
+    </body>
+</html>
